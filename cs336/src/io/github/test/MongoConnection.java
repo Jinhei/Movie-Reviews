@@ -45,6 +45,22 @@ public class MongoConnection {
 		}
 		bc.close();
 		writeFile(reviews);
+		
+		// R*
+		Review r_star = reviews.get(0);
+		TFIDF q1 = new TFIDF(r_star.review, reviews);
+		System.out.println("A. "+r_star.review);
+		System.out.println(q1.getReviewRankings());
+		
+		
+		// Two Words
+		TFIDF q2 = new TFIDF("end film", reviews);
+		System.out.println("B. \"end film\"");
+		System.out.println(q2.getReviewRankings());
+		
+		// Part E
+		System.out.println("E. N: "+q2.N+", V: "+q2.V);
+		System.out.println(q2.report());
 	}
 	
 	public static List<String> readFile(String file){
